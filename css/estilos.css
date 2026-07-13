@@ -1,0 +1,100 @@
+/*GENERAL*/
+body
+{
+    background-image: url(../imgs/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Montenegrin Gothic One", serif;
+}
+
+/*TITULO*/
+h1
+{
+    color: white;
+    text-align: center;
+    font-size: 3em;
+}
+
+/*PRINCIPAL*/
+.contenedor
+{
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+    color: white;
+}
+
+.selector
+{
+    margin: 20px 0;
+    font-size: 1.5em;
+}
+
+select
+{
+    font-size: 1em;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: 2px solid white;
+}
+
+button
+{
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: crimson;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover
+{
+    background: rgb(108, 0, 0);
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+.historia
+{
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-left: 4px solid crimson;
+    font-size: 1.3em;
+}
+
+/*RESPONSIVE*/ 
+@media (max-width: 600px) 
+{
+    .contenedor
+    {
+        height: 420px;
+    }
+
+    .selector 
+    {
+        width: 28vw;
+        max-width: 100px;
+    }
+
+    #resultado 
+    {
+        width: 90%;
+        padding: 15px;
+        max-width: 320px;
+    }
+
+    .selector
+
+    h1 
+    {
+        font-family: "Explora", serif;
+        font-size: 1.2rem;
+        margin-top: 5px;
+    }
+}
