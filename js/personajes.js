@@ -49,7 +49,7 @@ let localizaciones =
         descripcion:"Una metrópolis donde las torres tienen relojes gigantes y las calles cambian según la hora.Los edificios están hechos de cristal temporal, que refleja futuros posibles.En el centro, el Gran Reloj marca no solo la hora… sino la estabilidad de la realidad."
     },
     {
-        lugar: "Maridia Azul ",
+        lugar: "Maridia Azul",
         descripcion:"Una ciudad construida sobre plataformas gigantes que se mueven con las mareas.Las casas son de metal blanco y cristal azul, y bajo ellas se ven criaturas luminosas.Por la noche, el océano brilla como si respirara luz."
     },
     {
