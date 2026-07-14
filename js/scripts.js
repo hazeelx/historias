@@ -26,8 +26,15 @@ function generarHistoria()
     let artefacto = artefactos[document.getElementById("artefactoSelect").value];
     let lugar = localizaciones[document.getElementById("localizacionSelect").value];
 
-    let historia = historiasOscuras[personaje.nombre][artefacto.objeto][lugar.lugar];
+    let historia = historiasOscuras?.[personaje.nombre]?.[artefacto.objeto]?.[lugar.lugar];
 
+    if(!hitsoria)
+    {
+        console.generarHistoria("La historia combinada no existe. Revisa las claves.");
+        document.getElementById("imagenGenerada").innerHTML =
+        `<p style = "color:red;"> No se pudo generar la historia</p>`;
+        return;
+    }
 
     let historiaFinal = `
         <h2>${personaje.nombre}</h2>
@@ -50,9 +57,8 @@ function generarHistoria()
     startDelay: 300,
     cursor: true,
     lifeLike: true
-})
-.go();
-// Llamar al backend para generar la imagen
+}).go();
+
 fetch("/api/generar-imagen", {
     method: "POST",
     headers: {
@@ -62,9 +68,15 @@ fetch("/api/generar-imagen", {
 })
 .then(res => res.json())
 .then(data => {
+    if(!data.url) {
+        console.error("Bakend no devolvio url:", data);
+        document.getElementById("imagenGenerada").innerHTML =
+        `<p style = "color:red;"> No se pudo generar la imagen</p>`;
+        return;
+    }
     document.getElementById("imagenGenerada").innerHTML =
         `<img src="${data.url}" alt="Imagen generada">`;
-})
+    })
 .catch(err => {
     console.error("Error generando imagen:", err);
 });
