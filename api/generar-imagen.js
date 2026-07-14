@@ -6,6 +6,9 @@ export default async function handler(req) {
   try {
     const { historia } = await req.json();
 
+    console.log("Historia recibida:", historia);
+    console.log("API KEY existe:", !!process.env.OPENAI_KEY);
+
     const response = await fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",
       headers: {
@@ -20,8 +23,9 @@ export default async function handler(req) {
     });
 
     const data = await response.json();
+    console.log("Respuesta OpenAI:", data);
 
-    return Response.json({ url: data.data[0].url });
+    return Response.json({ url: data.data?.[0]?.url });
 
   } catch (error) {
     console.error("Error en backend:", error);
