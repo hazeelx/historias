@@ -52,6 +52,23 @@ function generarHistoria()
     lifeLike: true
 })
 .go();
+// Llamar al backend para generar la imagen
+fetch("/api/generar-imagen", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ historia })
+})
+.then(res => res.json())
+.then(data => {
+    document.getElementById("imagenGenerada").innerHTML =
+        `<img src="${data.url}" alt="Imagen generada">`;
+})
+.catch(err => {
+    console.error("Error generando imagen:", err);
+});
+
 
 }
 
