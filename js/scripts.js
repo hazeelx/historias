@@ -28,9 +28,9 @@ function generarHistoria()
 
     let historia = historiasOscuras?.[personaje.nombre]?.[artefacto.objeto]?.[lugar.lugar];
 
-    if(!hitsoria)
+    if(!historia)
     {
-        console.generarHistoria("La historia combinada no existe. Revisa las claves.");
+        console.error("La historia combinada no existe. Revisa las claves.");
         document.getElementById("imagenGenerada").innerHTML =
         `<p style = "color:red;"> No se pudo generar la historia</p>`;
         return;
@@ -69,7 +69,7 @@ fetch("/api/generar-imagen", {
 .then(res => res.json())
 .then(data => {
     if(!data.url) {
-        console.error("Bakend no devolvio url:", data);
+        console.error("Backend no devolvio url:", data);
         document.getElementById("imagenGenerada").innerHTML =
         `<p style = "color:red;"> No se pudo generar la imagen</p>`;
         return;
