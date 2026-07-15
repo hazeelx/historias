@@ -1,34 +1,54 @@
-export const config = {
+export const config = 
+{
   runtime: "edge",
 };
 
-export default async function handler(req) {
-  try {
+export default async function handler(req)
+{
+  try 
+  {
     const { historia } = await req.json();
 
-    console.log("Historia recibida:", historia);
-    console.log("API KEY existe:", !!process.env.OPENAI_KEY);
+    const prompt = `Ilustración oscura, atmosférica, estilo narrativo. ${historia}`;
 
-    const response = await fetch("https://api.openai.com/v1/images/generations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_KEY}`
-      },
-      body: JSON.stringify({
-        model: "gpt-image-1",
-        prompt: `Genera una ilustración oscura, atmosférica y narrativa basada en esta historia: ${historia}`,
-        size: "1024x1024"
-      })
-    });
+    const response = await fetch
+    (
+      "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2",
+      {
+        method: "POST",
+        headers:
+        {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.HF_TOKEN}`
+        },
+        body: JSON.stringify({ inputs: prompt })
+      }
+    );
 
-    const data = await response.json();
-    console.log("Respuesta OpenAI:", data);
+    if(!response.ok)
+    {
+      return Response.json(
+        { error: "Error en el servidor"},
+        { status: 500 }
+      );
+    }
 
-    return Response.json({ url: data.data?.[0]?.url });
+    const arrayBuffer = await response.arrayBuffer();
+    const base64 = Buffer.from(arrayBuffer).toString("base64");
 
-  } catch (error) {
-    console.error("Error en backend:", error);
-    return Response.json({ error: "Error generando imagen" }, { status: 500 });
+    return Response.json(
+    {
+      url: `data:image/png;base64,${base64}`
+    }
+    );
+  }
+
+  catch (error)
+  {
+    return Response.json
+    (
+      { error: "Error ene el servidor" },
+      { status: 500 }
+    );
   }
 }
