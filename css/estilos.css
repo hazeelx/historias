@@ -72,30 +72,81 @@ button:hover
 /*RESPONSIVE*/ 
 @media (max-width: 600px) 
 {
+    body 
+    {
+        background-size: cover;
+        background-attachment: scroll;
+    }
+
+    h1 
+    {
+        font-size: 1.6em;
+        padding: 0 10px;
+    }
+
     .contenedor
     {
-        height: 420px;
+        width: 95%;
+        margin-top: 20px
     }
 
     .selector 
     {
-        width: 28vw;
-        max-width: 100px;
+        font-size: 1.2em;
+    }
+
+    select 
+    {
+        width: 100%;
+        max-width: 280px;
+        font-size: 1em;
+        padding: 8px;
+    }
+
+    button 
+    {
+        width: 100%;
+        max-width: 280px;
+        font-size: 1.1em;
+        padding: 12px;
     }
 
     #resultado 
     {
-        width: 90%;
+        width: 100%;
         padding: 15px;
-        max-width: 320px;
+        font-size: 1.1em;
     }
 
-    .selector
+}
 
+@media (min-width: 601px) and (max-width: 1024px)
+{
     h1 
     {
-        font-family: "Explora", serif;
-        font-size: 1.2rem;
-        margin-top: 5px;
+        font-size: 2.2em;
+    }
+
+    .contenedor
+    {
+        width: 85%;
+    }
+
+    select
+    {
+        width: 60%;
+        max-width: 400px;
+        font-size: 1.2em;
+    }
+
+    button 
+    {
+        font-size: 1.3em;
+        padding: 15px 25px;
+    }
+
+    #resultado
+    {
+        font-size: 1.3em;
     }
 }
