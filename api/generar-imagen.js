@@ -3,8 +3,8 @@ export const config = {
 };
 
 export default async function handler(req) {
-  // 1. Validar que el JSON llega bien
   let body;
+
   try {
     body = await req.json();
   } catch {
@@ -23,13 +23,11 @@ export default async function handler(req) {
     );
   }
 
-  // 2. Crear prompt
   const prompt = `Ilustración oscura, atmosférica, estilo narrativo. ${historia}`;
 
   try {
-    // 3. Llamada a HuggingFace
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/stabilityai/sdxl-turbo",
+      "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
       {
         method: "POST",
         headers: {
@@ -40,7 +38,6 @@ export default async function handler(req) {
       }
     );
 
-    // 4. Si HuggingFace devuelve error, mostrarlo
     if (!response.ok) {
       const errorText = await response.text();
       console.error("HuggingFace error:", errorText);
@@ -51,7 +48,6 @@ export default async function handler(req) {
       );
     }
 
-    // 5. Convertir imagen a base64 compatible con Edge Runtime
     const arrayBuffer = await response.arrayBuffer();
     const bytes = new Uint8Array(arrayBuffer);
 
@@ -59,7 +55,6 @@ export default async function handler(req) {
     bytes.forEach(b => binary += String.fromCharCode(b));
     const base64 = btoa(binary);
 
-    // 6. Respuesta final para tu frontend
     return Response.json({
       url: `data:image/png;base64,${base64}`
     });
