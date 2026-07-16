@@ -29,7 +29,7 @@ export default async function handler(req) {
   try {
     // 3. Llamada a HuggingFace
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2",
+      "https://api-inference.huggingface.co/models/stabilityai/sdxl-turbo",
       {
         method: "POST",
         headers: {
