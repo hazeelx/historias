@@ -1,31 +1,21 @@
 export const config = {
-  runtime: "edge",
+  runtime: "nodejs18.x",
 };
 
-export default async function handler(req) {
-  let body;
-
+export default async function handler(req, res) {
   try {
-    body = await req.json();
-  } catch {
-    return Response.json(
-      { error: "JSON inválido recibido" },
-      { status: 400 }
-    );
-  }
+    const body = await req.json();
+    const historia = body?.historia;
 
-  const historia = body?.historia;
+    if (!historia) {
+      return Response.json(
+        { error: "No se envió historia" },
+        { status: 400 }
+      );
+    }
 
-  if (!historia) {
-    return Response.json(
-      { error: "No se envió historia" },
-      { status: 400 }
-    );
-  }
+    const prompt = `Ilustración oscura, atmosférica, estilo narrativo. ${historia}`;
 
-  const prompt = `Ilustración oscura, atmosférica, estilo narrativo. ${historia}`;
-
-  try {
     const response = await fetch(
       "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
       {
@@ -49,11 +39,7 @@ export default async function handler(req) {
     }
 
     const arrayBuffer = await response.arrayBuffer();
-    const bytes = new Uint8Array(arrayBuffer);
-
-    let binary = "";
-    bytes.forEach(b => binary += String.fromCharCode(b));
-    const base64 = btoa(binary);
+    const base64 = Buffer.from(arrayBuffer).toString("base64");
 
     return Response.json({
       url: `data:image/png;base64,${base64}`
