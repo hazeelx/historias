@@ -28,7 +28,7 @@ function generarHistoria()
 
     let historia = historiasOscuras?.[personaje.nombre]?.[artefacto.objeto]?.[lugar.lugar];
 
-    if(!historia)
+    if(!historia || typeof historia !== "string")
     {
         console.error("La historia combinada no existe. Revisa las claves.");
         document.getElementById("imagenGenerada").innerHTML =
