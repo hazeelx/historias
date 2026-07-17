@@ -36,10 +36,12 @@ select
 {
     font-size: 1em;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(20, 20, 20, 0.7);
     color: white;
-    border: 2px solid white;
+    border: 2px solid crimson;
+    border-radius: 6px;
     width: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 button
@@ -47,17 +49,24 @@ button
     margin-top: 30px;
     padding: 15px 30px;
     font-size: 1.2em;
-    background: crimson;
+    background: linear-gradient(135deg, #8b0000, #b30000);
     color: white;
     border: none;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    transition: 0.3s ease;
 }
 
 button:hover
 {
-    background: rgb(108, 0, 0);
-    transform: scale(1.05);
-    transition: 0.3s ease;
+    background: linear-gradient(135deg, #b30000 #ff0000);
+    transform: scale(1.07);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+strong
+{
+    color: #8b0000;
 }
 
 .historia

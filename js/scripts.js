@@ -34,13 +34,13 @@ function generarHistoria() {
         <h2>${personaje.nombre}</h2>
         <p><strong>Historia del personaje:</strong> ${personaje.historia}</p>
 
-        <h3>Artefacto elegido: ${artefacto.objeto}</h3>
+        <h3><strong>Artefacto elegido:</strong> ${artefacto.objeto}</h3>
         <p>${artefacto.uso}</p>
 
-        <h3>Localización: ${lugar.lugar}</h3>
+        <h3><strong>Localización: </strong>${lugar.lugar}</h3>
         <p>${lugar.descripcion}</p>
 
-        <h3>Historia combinada</h3>
+        <h3><strong>Historia combinada: </strong></h3>
         <p>${historia}</p>
     `;
 
