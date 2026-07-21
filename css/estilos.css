@@ -49,8 +49,9 @@ button
     margin-top: 30px;
     padding: 15px 30px;
     font-size: 1.2em;
-    background: linear-gradient(135deg, #8b0000, #b30000);
+    background: linear-gradient(135deg, #ff9797, #b30000);
     color: white;
+    border-radius: 6px;
     border: none;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
@@ -59,14 +60,14 @@ button
 
 button:hover
 {
-    background: linear-gradient(135deg, #b30000 #ff0000);
+    background: linear-gradient(135deg, #ffb8b8 #000000);
     transform: scale(1.07);
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
 strong
 {
-    color: #8b0000;
+    color: crimson;
 }
 
 .historia
