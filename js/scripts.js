@@ -17,7 +17,7 @@ function cargarSelects() {
 }
 
 function generarHistoria() {
-    let personaje = personajes[document.getElementById("personajeSelect").value];
+    let personaje = personajes[+document.getElementById("personajeSelect").value];
     let artefacto = artefactos[document.getElementById("artefactoSelect").value];
     let lugar = localizaciones[document.getElementById("localizacionSelect").value];
 
@@ -44,13 +44,15 @@ function generarHistoria() {
         <p>${historia}</p>
     `;
 
-    document.getElementById("hero").innerHTML = historiaFinal;
+    document.getElementById("hero").innerHTML = "";
 
     new TypeIt("#hero", {
         speed: 40,
         startDelay: 300,
         cursor: true,
-        lifeLike: true
+        lifeLike: true,
+        html: true,
+        strings: historiaFinal
     }).go();
 }
 
